@@ -1,0 +1,43 @@
+<div>
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Nom d'utilisateur</span>
+    <button>
+      <span class="pl-[7rem] underline underline-offset-4">Enfant n°1</span>
+    </button>
+    <button>
+      <span class="pl-[5rem]">Enfant n°2</span>
+    </button>
+
+    <span class="example-spacer"></span>
+
+    <span class="pr-8">
+      <button mat-icon-button>
+        <!-- TODO: Changer la valeur de matBadge quand l'API sera mise en place -->
+        <mat-icon matBadge="14" matBadgeColor="warn" aria-hidden="false"
+          >notifications</mat-icon
+        >
+      </button>
+    </span>
+    <button mat-icon-button>
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-drawer-container>
+    <!-- Contenu de la sidebar -->
+    <mat-drawer
+      #drawer
+      mode="over"
+      [opened]="sidebarService.sidebarOpen$ | async"
+    >
+      <!-- Sidebar -->
+      <p>First communication module</p>
+    </mat-drawer>
+
+    <div class="h-[93.6vh]">
+      <ng-content />
+    </div>
+  </mat-drawer-container>
+</div>

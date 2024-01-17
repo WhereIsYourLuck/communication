@@ -1,0 +1,13 @@
+<div class="max-h-[98%] overflow-y-scroll">
+  <h1 class="text-center pt-3">Messagerie</h1>
+  <div class="border-t-2 border-t-black border-b-2 border-b-black">
+    @for (conversation of conversationList; track conversation.id) {
+    <app-conversation
+      username="{{ conversation.username }}"
+      lastMessage="{{ conversation.lastMessage }}"
+      messageDate="{{ conversation.messageDate }}"
+      [messagesNotSeen]="conversation.messagesNotSeen"
+    />
+    }
+  </div>
+</div>
