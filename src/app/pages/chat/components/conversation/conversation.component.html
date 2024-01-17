@@ -18,20 +18,20 @@
     class="row-span-2 col-span-2 col-start-11 row-start-1 pt-3 flex justify-center"
   >
     @if (messagesNotSeen === 0) {
-    <p class="text-xs italic font-medium text-gray-500">{{ messageDate }}</p>
+      <p class="text-xs italic font-medium text-gray-500">{{ messageDate }}</p>
     } @else {
-    <p class="text-xs italic font-medium text-blue-500">{{ messageDate }}</p>
+      <p class="text-xs italic font-medium text-blue-500">{{ messageDate }}</p>
     }
   </div>
   @if (messagesNotSeen > 0) {
-  <div
-    class="row-span-2 col-span-2 col-start-11 row-start-2 flex justify-center items-start"
-  >
     <div
-      class="rounded-full text-xs w-5 h-5 flex items-center justify-center bg-blue-500 text-white"
+      class="row-span-2 col-span-2 col-start-11 row-start-2 flex justify-center items-start"
     >
-      {{ messagesNotSeen }}
+      <div
+        class="rounded-full text-xs w-5 h-5 flex items-center justify-center bg-blue-500 text-white"
+      >
+        {{ messagesNotSeen }}
+      </div>
     </div>
-  </div>
   }
 </div>

@@ -8,10 +8,9 @@ describe('ConversationWidgetContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConversationWidgetContainerComponent]
-    })
-    .compileComponents();
-    
+      imports: [ConversationWidgetContainerComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ConversationWidgetContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,0 +1,11 @@
+<div class="shadow-2xl w-16 border border-black rounded-md overflow-hidden">
+  <div class="flex justify-center bg-red-600 text-white font-bold">
+    {{ date | date: "LLL" | uppercase }}
+  </div>
+  <div class="flex justify-center pt-2 text-2xl font-bold">
+    {{ date | date: "dd" }}
+  </div>
+  <div class="flex justify-center text-sm">
+    {{ date | date: "EEE" | lowercase }}
+  </div>
+</div>

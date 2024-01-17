@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConversationComponent } from './conversation.component';
+import { DateEphemerisComponent } from './date-ephemeris.component';
 
-describe('ConversationComponent', () => {
-  let component: ConversationComponent;
-  let fixture: ComponentFixture<ConversationComponent>;
+describe('DateEphemerisComponent', () => {
+  let component: DateEphemerisComponent;
+  let fixture: ComponentFixture<DateEphemerisComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConversationComponent],
+      imports: [DateEphemerisComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ConversationComponent);
+    fixture = TestBed.createComponent(DateEphemerisComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
