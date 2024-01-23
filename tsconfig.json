@@ -22,13 +22,13 @@
     "baseUrl": "src",
     "paths": {
       "@core/*": ["app/core/*"],
-      "@shared/*": ["app/shared/*"]
-    }
+      "@shared/*": ["app/shared/*"],
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+    "strictTemplates": true,
+  },
 }
