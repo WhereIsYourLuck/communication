@@ -1,0 +1,7 @@
+@for (n of news ; track n.id){
+  <app-news-element [news]="n"></app-news-element>
+}
+
+@empty{
+  <p>Pas d'actualité aujourd'hui !</p>
+}
