@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CalendarEvent } from '@core/models/event.model';
+import { Event } from '@core/models';
 import { AsyncPipe } from '@angular/common';
 import { EventService } from '@core/services/event.service';
 import { CalendarWidgetComponent } from '../calendar-widget/calendar-widget.component';
@@ -9,15 +9,23 @@ import { CalendarWidgetComponent } from '../calendar-widget/calendar-widget.comp
   selector: 'app-calendar-widget-container',
   standalone: true,
   imports: [AsyncPipe, CalendarWidgetComponent],
-  template: ` <app-calendar-widget [eventList]="events$ | async" /> `,
+  template: `
+    @if (events$ | async; as events) {
+      <app-calendar-widget [eventList]="events" />
+    } @else {
+      Erreur sur la récupération des événements
+    }
+  `,
 })
 export class CalendarWidgetContainerComponent implements OnInit {
-  events$!: Observable<CalendarEvent[]>;
+  events$!: Observable<Event[]>;
 
   constructor(private eventService: EventService) {}
 
+  start = new Date(Date.now());
+  end = new Date();
+
   ngOnInit() {
-    // TODO : replace me with the service call
-    this.events$ = this.eventService.getEvents();
+    this.events$ = this.eventService.getEvents(this.start, this.end);
   }
 }

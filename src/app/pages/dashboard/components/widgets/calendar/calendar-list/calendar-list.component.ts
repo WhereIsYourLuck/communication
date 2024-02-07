@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CalendarEvent } from '@core/models/event.model';
+import { Event } from '@core/models';
 import { EventCardComponent } from '@shared/components/calendar/event-card/event-card.component';
 
 @Component({
@@ -9,5 +9,5 @@ import { EventCardComponent } from '@shared/components/calendar/event-card/event
   templateUrl: './calendar-list.component.html',
 })
 export class CalendarListComponent {
-  @Input() events!: CalendarEvent[] | null;
+  @Input() events!: Event[] | null;
 }

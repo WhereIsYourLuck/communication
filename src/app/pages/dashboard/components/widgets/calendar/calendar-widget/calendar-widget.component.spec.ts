@@ -1,30 +1,39 @@
 import { CalendarWidgetComponent } from './calendar-widget.component';
-import { CalendarEvent } from '@core/models/event.model';
+import { Event } from '@core/models';
 
 describe('CalendarWidgetComponent', () => {
   const startingTime = new Date('2023-12-24');
 
-  const events: Array<CalendarEvent> = [
+  const events: Array<Event> = [
     {
       id: 1,
       title: 'Sortie à la ferme',
       description: 'lorem ipsum',
-      startDate: new Date('2023-12-24'),
-      endDate: new Date('2023-12-24'),
+      beginning: '2023-12-24',
+      end: '2023-12-24',
+      createdBy: 'TDURR',
+      createdAt: '2023-12-20',
+      updatedAt: '2023-12-20',
     },
     {
       id: 2,
       title: 'Sortie du lendemain',
       description: 'lorem',
-      startDate: new Date('2023-12-25'),
-      endDate: new Date('2023-12-26'),
+      beginning: '2023-12-25',
+      end: '2023-12-26',
+      createdBy: 'TDURR',
+      createdAt: '2023-12-20',
+      updatedAt: '2023-12-20',
     },
     {
       id: 3,
       title: 'Sortie de la veille',
       description: 'lorem',
-      startDate: new Date('2023-12-23'),
-      endDate: new Date('2023-12-24'),
+      beginning: '2023-12-23',
+      end: '2023-12-24',
+      createdBy: 'TDURR',
+      createdAt: '2023-12-20',
+      updatedAt: '2023-12-20',
     },
   ];
 

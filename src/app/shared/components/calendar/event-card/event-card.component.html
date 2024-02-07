@@ -2,12 +2,12 @@
   <mat-card>
     <div class="flex flex-row px-3">
       @if (ephemeris) {
-        <app-date-ephemeris [date]="calendarEvent.startDate" class="pt-4" />
+        <app-date-ephemeris [date]="calendarEvent.beginning" class="py-2" />
       }
       <div class="object-fill">
         <mat-card-header>
           <mat-card-title
-            >{{ calendarEvent.startDate | date: "hh'h'mm" }} -
+            >{{ calendarEvent.beginning | date: "hh'h'mm" }} -
             {{ calendarEvent.title }}</mat-card-title
           >
         </mat-card-header>
