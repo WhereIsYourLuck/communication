@@ -11,6 +11,7 @@ import {
 } from '@angular/common/http';
 import { authenticationInterceptor } from '@core/interceptors/auth.interceptor';
 import { AppConfigService } from '@core/config/app-config.service';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 export function loadAppConfig(configService: AppConfigService) {
   return () => {
@@ -30,6 +31,12 @@ export const appConfig: ApplicationConfig = {
       useFactory: loadAppConfig,
       multi: true,
       deps: [AppConfigService],
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        appearance: 'outline',
+      },
     },
     provideClientHydration(),
     provideAnimations(),

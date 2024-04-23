@@ -1,8 +1,15 @@
-import { Component } from '@angular/core';
-import {MatInputModule} from "@angular/material/input";
-import {MatCardModule} from "@angular/material/card";
-import {FormsModule} from "@angular/forms";
-import {MatButtonModule} from "@angular/material/button";
+import { Component, ViewChild } from '@angular/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +18,22 @@ import {MatButtonModule} from "@angular/material/button";
     MatInputModule,
     MatCardModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatIconModule,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  username: string = "";
-  password: string = "";
+  hide = true;
 
-  onSubmit() {
-    // Add your login logic here
-    console.log('Username:', this.username);
-    console.log('Password:', this.password);
+  loginForm = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
+
+  onSubmitForm() {
+    console.warn(this.loginForm.value);
   }
 }
