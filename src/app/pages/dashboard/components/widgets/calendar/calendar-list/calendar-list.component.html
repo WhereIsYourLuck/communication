@@ -1,0 +1,7 @@
+<ul class="flex flex-col space-y-2">
+  @for (e of events; track e.id) {
+    <app-event-card ephemeris [calendarEvent]="e"></app-event-card>
+  } @empty {
+    Pas d'évènements !
+  }
+</ul>

@@ -1,0 +1,45 @@
+<div
+  role="button"
+  tabindex="0"
+  (click)="onClickDiscussion()"
+  (keydown)="onClickDiscussion()"
+  class="grid grid-cols-12 grid-rows-2 bg-gray-200 b order-b-[1px] border-b-gray-300 h-[5rem]"
+>
+  <div class="row-span-2 col-span-2 flex items-center justify-center">
+    <div class="scale-[3] flex items-center">
+      <mat-icon>account_circle</mat-icon>
+    </div>
+  </div>
+  <div class="col-start-3 row-start-1 col-span-8 pt-2">
+    <p class="font-bold text-lg">{{ (user | async)?.username }}</p>
+  </div>
+  <div class="col-start-3 col-span-8 row-start-2">
+    <p class="italic text-ellipsis overflow-hidden whitespace-nowrap">
+      {{ discussion.lastMessage.content }}
+    </p>
+  </div>
+  <div
+    class="row-span-2 col-span-2 col-start-11 row-start-1 pt-3 flex justify-center"
+  >
+    @if (discussion.messagesNotSeen === 0) {
+      <p class="text-xs italic font-medium text-gray-500">
+        {{ discussion.lastMessage.sentAt | date }}
+      </p>
+    } @else {
+      <p class="text-xs italic font-medium text-blue-500">
+        {{ discussion.lastMessage.sentAt | date }}
+      </p>
+    }
+  </div>
+  @if (discussion.messagesNotSeen > 0) {
+    <div
+      class="row-span-2 col-span-2 col-start-11 row-start-2 flex justify-center items-start"
+    >
+      <div
+        class="rounded-full text-xs w-5 h-5 flex items-center justify-center bg-blue-500 text-white"
+      >
+        {{ discussion.messagesNotSeen }}
+      </div>
+    </div>
+  }
+</div>
