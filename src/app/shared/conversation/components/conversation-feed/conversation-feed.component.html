@@ -1,0 +1,21 @@
+<mat-sidenav-container class="h-full border-y-2 border-black">
+  <mat-sidenav-content class="bg-amber-50 p-4 overflow-y-auto">
+    <div class="space-y-4">
+      @for (message of messages; track message.id) {
+        @if (isUserMessage(message.sentBy)) {
+          <app-conversation-bubble
+            [message]="message"
+            [style]="'bg-teal-400 pl-2 pr-2 rounded-lg text-black'"
+            [position]="'flex justify-end'"
+          ></app-conversation-bubble>
+        } @else {
+          <app-conversation-bubble
+            [message]="message"
+            [style]="'bg-lime-100 pl-2 pr-2 rounded-lg text-black'"
+            [position]="'flex items-start'"
+          ></app-conversation-bubble>
+        }
+      }
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

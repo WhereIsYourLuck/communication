@@ -1,0 +1,18 @@
+<div class="flex">
+  <div class="w-1/4">
+    <app-conversation-list-container
+      (conversationItemClicked)="onConversationItemClicked($event)"
+    ></app-conversation-list-container>
+  </div>
+  <div class="w-3/4">
+    @if (user$ | async; as user) {
+      <app-profile-preview [username]="user.username" />
+    }
+    @if (messages$ | async; as messages) {
+      <app-conversation-feed class="h-auto" [messages]="messages" />
+    }
+
+    <app-message-input (messageSent)="addMessage($event)"/>
+
+  </div>
+</div>

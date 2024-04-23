@@ -1,0 +1,10 @@
+<div class="max-h-[98%] overflow-y-scroll">
+  <div class="border-t-2 border-t-black border-b-2 border-b-black">
+    @for (discussion of conversationList; track discussion.id) {
+      <app-conversation-list-item
+        [discussion]="discussion"
+        (conversationItemClicked)="onConversationItemClicked($event)"
+      />
+    }
+  </div>
+</div>
