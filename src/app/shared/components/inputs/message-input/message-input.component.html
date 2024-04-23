@@ -1,0 +1,15 @@
+<!-- conversation-list-item-input.component.html -->
+<mat-card>
+  <mat-card-content>
+    <input
+      matInput
+      placeholder="Tapez votre message ici..."
+      [(ngModel)]="content"
+      (keydown.enter)="onNewMessage()"
+      class="w-5/6 p-2"
+    >
+    <button mat-icon-button color="primary" (click)="onNewMessage()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>

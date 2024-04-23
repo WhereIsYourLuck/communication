@@ -5,9 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { AppConfigService } from '@core/config/app-config.service';
 import { formatDate } from '@angular/common';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class EventService {
   private readonly path = '/events';
 
