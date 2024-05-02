@@ -25,3 +25,4 @@ export class CalendarComponent {
     alert('Date clicked: ' + arg.dateStr);
   }
 }
+
