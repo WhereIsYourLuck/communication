@@ -1,9 +1,21 @@
 <div>
   <mat-toolbar color="primary">
-    <button mat-icon-button (click)="toggleSidebar()">
+    <button
+      mat-icon-button
+      (click)="onMenuItemClick('/')"
+      class="hover:scale-125 duration-300 transition-transform"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="toggleSidebar()"
+      class="hover:scale-125 duration-300 transition-transform"
+    >
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Nom d'utilisateur</span>
+
+    <span class="ml-3">Nom d'utilisateur</span>
     <button>
       <span class="pl-[7rem] underline underline-offset-4">Enfant n°1</span>
     </button>
@@ -21,7 +33,10 @@
         >
       </button>
     </span>
-    <button mat-icon-button>
+    <button
+      mat-icon-button
+      class="hover:scale-125 duration-300 transition-transform"
+    >
       <mat-icon>power_settings_new</mat-icon>
     </button>
   </mat-toolbar>
@@ -31,9 +46,53 @@
       #drawer
       mode="over"
       [opened]="sidebarService.sidebarOpen$ | async"
+      class="w-[12%]"
     >
-      <!-- Sidebar -->
-      <p>First communication module</p>
+      <div class="w-[100%] h-[100%] flex flex-col justify-center items-center">
+        <button
+          mat-fab
+          extended
+          color="primary"
+          (click)="onMenuItemClick('/alerts')"
+          class="hover:scale-110"
+        >
+          <mat-icon>notifications</mat-icon>
+          Alertes
+        </button>
+
+        <button
+          mat-fab
+          extended
+          color="primary"
+          class="my-10 hover:scale-110"
+          (click)="onMenuItemClick('/news')"
+        >
+          <mat-icon>list</mat-icon>
+          Actualités
+        </button>
+
+        <button
+          mat-fab
+          extended
+          color="primary"
+          class="mb-10 hover:scale-110"
+          (click)="onMenuItemClick('/calendar')"
+        >
+          <mat-icon>calendar_today</mat-icon>
+          Calendrier
+        </button>
+
+        <button
+          mat-fab
+          extended
+          color="primary"
+          class="hover:scale-110"
+          (click)="onMenuItemClick('/chat')"
+        >
+          <mat-icon>message</mat-icon>
+          Messagerie
+        </button>
+      </div>
     </mat-drawer>
 
     <div class="h-[93.6vh]">

@@ -6,6 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { SidebarService } from '../../../services/sidebar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +25,10 @@ import { SidebarService } from '../../../services/sidebar.service';
 export class NavbarComponent {
   isSidebarOpened: boolean = false;
 
-  constructor(public sidebarService: SidebarService) {
+  constructor(
+    public sidebarService: SidebarService,
+    private router: Router,
+  ) {
     this.sidebarService.sidebarOpen$.subscribe((value) => {
       this.isSidebarOpened = value;
     });
@@ -32,5 +36,14 @@ export class NavbarComponent {
 
   toggleSidebar(): void {
     this.sidebarService.toggleSidebar();
+  }
+
+  onMenuItemClick(section: string) {
+    console.log(section);
+    this.router.navigate([section]);
+
+    if (section !== '/') {
+      this.toggleSidebar();
+    }
   }
 }
