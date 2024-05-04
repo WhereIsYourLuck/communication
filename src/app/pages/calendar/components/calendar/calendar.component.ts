@@ -1,32 +1,48 @@
-import { Component, NgModule } from "@angular/core";
-import { FullCalendarModule } from "@fullcalendar/angular";
-import { CommonModule } from "@angular/common";
-import { CalendarOptions } from "@fullcalendar/core";
+import { Component, NgModule } from '@angular/core';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CommonModule } from '@angular/common';
+import { CalendarOptions } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { EventsService } from "@core/services/events.service";
+import interactionPlugin from '@fullcalendar/interaction';
 import { HttpClientModule } from '@angular/common/http';
-import { EventService } from "@core/services/event.service";
-import eventModel from "@core/models/event.model";
-import { Observable } from "rxjs";
-
+import { EventService } from '@core/services/event.service';
+import eventModel from '@core/models/event.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [ FullCalendarModule, CommonModule, HttpClientModule],
+  imports: [FullCalendarModule, CommonModule, HttpClientModule],
   templateUrl: './calendar.component.html',
-  styleUrl: './calendar.component.scss'
+  styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent {
   calendarOptions: CalendarOptions = {
     initialView: 'timeGridWeek',
-    plugins:[timeGridPlugin],
-    //dateClick: this.handleDateClick.bind(this),
-    events: []
+    plugins: [timeGridPlugin, interactionPlugin],
+    eventClick: function (info) {
+      alert(
+        'Titre: ' +
+          info.event.title +
+          '\n' +
+          'Description: ' +
+          info.event.extendedProps['description'],
+      );
+    },
+    eventMouseEnter: function (info) {
+      info.el.style.backgroundColor = 'lightblue';
+    },
+    eventMouseLeave: function (info) {
+      info.el.style.backgroundColor = '';
+    },
+    dateClick: function (info) {
+      alert('Clicked on: ' + info.dateStr);
+    },
+    events: [],
   };
-  events$!: Observable<eventModel[]>
+  events$!: Observable<eventModel[]>;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
     this.loadEvents();
@@ -36,27 +52,29 @@ export class CalendarComponent {
     this.events$ = this.eventService.getEvents();
     this.events$.subscribe({
       next: (events) => {
-        events.forEach((value: eventModel):void => {
+        events.forEach((value: eventModel): void => {
           const transformedEvent = {
             title: value.title,
             start: value.beginning,
             end: value.end,
             allDay: 'False',
             extendedProps: {
-              description: value.description
-            }
+              description: value.description,
+            },
           };
           // Push each transformed event into the FullCalendar events array
           this.calendarOptions = {
             ...this.calendarOptions,
-            events: [...(this.calendarOptions.events as any[]), transformedEvent]
+            events: [
+              ...(this.calendarOptions.events as any[]),
+              transformedEvent,
+            ],
           };
-        })
-      }
+        });
+      },
     });
   }
   handleDateClick(arg: any) {
     alert('Date clicked: ' + arg.dateStr);
   }
 }
-
