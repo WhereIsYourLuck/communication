@@ -8,11 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { EventService } from '@core/services/event.service';
 import eventModel from '@core/models/event.model';
 import { Observable } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [FullCalendarModule, CommonModule, HttpClientModule],
+  imports: [FullCalendarModule, CommonModule, HttpClientModule, RouterLink],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })
