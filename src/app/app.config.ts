@@ -9,9 +9,9 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { authenticationInterceptor } from '@core/interceptors/auth.interceptor';
 import { AppConfigService } from '@core/config/app-config.service';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { authenticationInterceptor } from '@core/interceptors/auth.interceptor';
 
 export function loadAppConfig(configService: AppConfigService) {
   return () => {
@@ -29,8 +29,8 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       useFactory: loadAppConfig,
-      multi: true,
       deps: [AppConfigService],
+      multi: true,
     },
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
