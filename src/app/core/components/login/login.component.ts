@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '@core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -28,12 +30,32 @@ import { MatIconModule } from '@angular/material/icon';
 export class LoginComponent {
   hide = true;
 
+  errors: string[] = [];
+
   loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
   });
 
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) {}
+
   onSubmitForm() {
-    console.warn(this.loginForm.value);
+    this.errors = [];
+    this.auth
+      .login({
+        email: this.loginForm.get('email')?.value ?? '',
+        password: this.loginForm.get('password')?.value ?? '',
+      })
+      .subscribe({
+        next: () => {
+          this.router.navigateByUrl('/');
+        },
+        error: () => {
+          this.errors.push('Invalid email or password');
+        },
+      });
   }
 }

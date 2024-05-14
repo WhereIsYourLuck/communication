@@ -6,6 +6,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { SidebarService } from '../../../services/sidebar.service';
+import { AuthService } from '@core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +26,11 @@ import { SidebarService } from '../../../services/sidebar.service';
 export class NavbarComponent {
   isSidebarOpened: boolean = false;
 
-  constructor(public sidebarService: SidebarService) {
+  constructor(
+    public sidebarService: SidebarService,
+    public auth: AuthService,
+    public router: Router,
+  ) {
     this.sidebarService.sidebarOpen$.subscribe((value) => {
       this.isSidebarOpened = value;
     });
@@ -32,5 +38,10 @@ export class NavbarComponent {
 
   toggleSidebar(): void {
     this.sidebarService.toggleSidebar();
+  }
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigateByUrl('/login');
   }
 }

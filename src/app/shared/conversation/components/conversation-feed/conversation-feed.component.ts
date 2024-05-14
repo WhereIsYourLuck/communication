@@ -24,6 +24,6 @@ export class ConversationFeedComponent {
   constructor(private authService: AuthService) {}
 
   isUserMessage(messageId: number): boolean {
-    return this.authService.user.id == messageId;
+    return this.authService.authenticatedUser.id == messageId;
   }
 }

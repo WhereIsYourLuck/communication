@@ -27,6 +27,13 @@ export class AppConfigService {
   }
 
   /*
+  URL of the Auth endpoint
+   */
+  get authUrl() {
+    return this.appConfig.authUrl;
+  }
+
+  /*
   Environment on which the app is running
    */
   get env() {

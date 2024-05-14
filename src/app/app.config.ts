@@ -12,6 +12,8 @@ import {
 import { AppConfigService } from '@core/config/app-config.service';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { authenticationInterceptor } from '@core/interceptors/auth.interceptor';
+import { StorageService } from '@core/storage/storage.service';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 export function loadAppConfig(configService: AppConfigService) {
   return () => {
@@ -21,6 +23,9 @@ export function loadAppConfig(configService: AppConfigService) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+    StorageService,
     provideRouter(routes),
     provideHttpClient(
       withInterceptors([authenticationInterceptor]),
