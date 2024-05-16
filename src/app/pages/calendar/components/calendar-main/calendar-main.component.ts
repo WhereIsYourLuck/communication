@@ -5,8 +5,5 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './calendar-main.component.html',
-  styleUrl: './calendar-main.component.scss'
 })
-export class CalendarMainComponent {
-
-}
+export class CalendarMainComponent {}

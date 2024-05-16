@@ -39,9 +39,9 @@ export class EventService {
   }
 
   createEvent(
-    start_date?: Date,
-    end_date?: Date,
-    title?: string,
+    start_date: Date,
+    end_date: Date,
+    title: string,
     description?: string,
   ): void {
     const eventParams: any = {};
@@ -58,8 +58,6 @@ export class EventService {
     if (description) {
       eventParams.description = description;
     }
-
-    console.log(eventParams);
 
     this.http
       .post<Event[]>(this.appConfig.apiUrl + this.path, eventParams)
