@@ -1,5 +1,18 @@
 <div class="flex">
   <div class="w-1/4">
+
+
+    <br/>
+    <form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+
+      <p>Nouvelle conversation :</p>
+      <select name = "user" required ngModel>
+        <option *ngFor = "let user of users" [value]="user.id"> {{ user.email }} </option>
+      </select>
+      <br/><br/>
+      <button type = "submit">Créer</button>
+    </form>
+
     <app-conversation-list-container
       (conversationItemClicked)="onConversationItemClicked($event)"
     ></app-conversation-list-container>

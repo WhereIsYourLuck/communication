@@ -5,10 +5,12 @@ import { Discussion, Message, User } from '@core/models';
 import { ConversationFeedComponent } from '@shared/conversation/components/conversation-feed/conversation-feed.component';
 import { ConversationListContainerComponent } from '@shared/conversation/components/conversation-list-container/conversation-list-container.component';
 import { map, Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgForOf } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '@core/services/user.service';
 import { MessageService } from '@core/services/message.service';
+import { FormsModule, NgForm } from '@angular/forms';
+import { DiscussionService } from '@core/services/discussion.service';
 
 @Component({
   selector: 'app-chat',
@@ -19,13 +21,17 @@ import { MessageService } from '@core/services/message.service';
     MessageInputComponent,
     ConversationListContainerComponent,
     AsyncPipe,
+    FormsModule,
+    NgForOf,
   ],
   templateUrl: './chat.component.html',
+  styleUrl: './chat.component.scss',
 })
 export class ChatComponent implements OnInit {
   discussion$!: Observable<Discussion>;
   messages$!: Observable<Message[]>;
   user$!: Observable<User>;
+  users: User[] = [];
 
   private discussionId!: number;
 
@@ -34,6 +40,7 @@ export class ChatComponent implements OnInit {
     private messageService: MessageService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private discussionService: DiscussionService,
   ) {}
 
   ngOnInit() {
@@ -47,6 +54,7 @@ export class ChatComponent implements OnInit {
       this.discussionId = value.id;
       this.user$ = this.userService.getUser(value.user2);
     });
+    this.getUsers();
   }
 
   onConversationItemClicked(discussion: Discussion) {
@@ -59,5 +67,15 @@ export class ChatComponent implements OnInit {
       content: content,
       sentBy: 1,
     });
+  }
+
+  getUsers() {
+    this.userService.getUsers().subscribe((users) => (this.users = users));
+  }
+
+  onSubmit(myform: NgForm) {
+    console.log(myform.value.user);
+    this.discussionService.createDiscussion(myform.value.user);
+    this.discussionService.getUserDiscussions();
   }
 }

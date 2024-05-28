@@ -13,7 +13,7 @@ export function authenticationInterceptor(
   const authToken: string = inject(AuthService).getAuthToken();
 
   const requestWithToken = req.clone({
-    headers: req.headers.append('Authorization', 'Bearer' + authToken),
+    headers: req.headers.append('Authorization', 'Bearer ' + authToken),
   });
 
   return next(requestWithToken);

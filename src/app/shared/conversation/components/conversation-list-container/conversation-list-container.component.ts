@@ -11,7 +11,7 @@ import { ConversationListComponent } from '@shared/conversation/components/conve
   imports: [AsyncPipe, ConversationListComponent],
   providers: [DiscussionService],
   template: `
-    @if (discussions$ | async; as discussions) {
+    @if (discussions) {
       <app-conversation-list
         [conversationList]="discussions"
         (conversationItemClicked)="onConversationItemClicked($event)"
@@ -24,12 +24,14 @@ import { ConversationListComponent } from '@shared/conversation/components/conve
 export class ConversationListContainerComponent implements OnInit {
   @Output() conversationItemClicked = new EventEmitter<Discussion>();
 
-  discussions$!: Observable<Discussion[]>;
+  discussions!: Discussion[];
 
   constructor(private discussionService: DiscussionService) {}
 
   ngOnInit() {
-    this.discussions$ = this.discussionService.getUserDiscussions();
+    this.discussionService
+      .getUserDiscussions()
+      .subscribe((discussions) => (this.discussions = discussions));
   }
 
   onConversationItemClicked(discussion: Discussion) {

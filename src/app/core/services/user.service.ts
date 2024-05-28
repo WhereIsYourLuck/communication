@@ -18,4 +18,8 @@ export class UserService {
   getUser(id: number): Observable<User> {
     return this.http.get<User>(this.appConfig.apiUrl + this.path + '/' + id);
   }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.appConfig.apiUrl + this.path);
+  }
 }
