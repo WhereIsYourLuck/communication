@@ -1,0 +1,24 @@
+
+<br/>
+<h1> Créer un nouvel évènement </h1>
+
+<form #myform = "ngForm" (ngSubmit) = "onSubmit(myform)" >
+
+  <p>Titre de l'évènement :</p>
+  <input type = "text" name = "title" placeholder = "Votre titre" ngModel>
+  <br/><br/>
+
+  <p>Date et heure de début : </p>
+  <input type = "datetime-local" name = "beginning" ngModel>
+  <br/><br/>
+
+  <p>Date et heure de fin : </p>
+  <input type = "datetime-local" name = "end" ngModel>
+  <br/><br/>
+
+  <p>Description de l'évènement :</p>
+  <input type = "text" name = "description" placeholder = "Votre description" ngModel>
+  <br/><br/>
+
+  <input type = "submit" value = "Send">
+</form>
