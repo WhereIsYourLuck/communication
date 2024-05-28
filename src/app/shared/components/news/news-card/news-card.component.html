@@ -1,0 +1,24 @@
+<mat-card
+  [class.cursor-pointer]="!fullSize"
+  [class.hover:bg-gray-200]="!fullSize"
+  [class.duration-500]="!fullSize"
+  routerLink="/news"
+>
+  <mat-card-header>
+    <mat-card-title>
+      <span [class.line-clamp-1]="!fullSize">
+        {{ news.title }}
+      </span>
+    </mat-card-title>
+    <mat-card-subtitle>{{
+      news.sendDate | date: "EEE dd MMMM y"
+    }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    @if (fullSize) {
+      <p class="pt-3">{{ news.body }}</p>
+    } @else {
+      <p class="line-clamp-1 pt-3">{{ news.body }}</p>
+    }
+  </mat-card-content>
+</mat-card>

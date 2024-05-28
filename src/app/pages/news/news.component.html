@@ -1,0 +1,61 @@
+@if (user?.isAdmin) {
+  <h1
+    class="flex items-center text-9xl font-extrabold dark:text-white justify-center"
+  >
+    <span
+      class="mt-4 bg-blue-100 text-blue-800 text-4xl font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-2"
+      >Actualités</span
+    >
+  </h1>
+  <ul
+    class="flex flex-col space-y-2 m-4 pb-1 max-h-[90%] overflow-y-scroll rounded-md"
+  >
+    @for (n of newsList$ | async; track n.id) {
+      <app-news-card [news]="n" [fullSize]="true" />
+    } @empty {
+      Aucune actualité !
+    }
+  </ul>
+  <!-- Cas du parent qui doit avoir deux colonnes -->
+} @else {
+  <div class="grid grid-cols-2 grid-rows-1 gap-6 p-4 h-[100%]">
+    <div
+      class="h-full w-full bg-blue-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-70 border border-gray-100 shadow-xl"
+    >
+      <div class="text-center">
+        <span class="text-blue-800 text-4xl font-semibold rounded ms-4"
+          >Actualités de l'école</span
+        >
+      </div>
+
+      <ul
+        class="flex flex-col space-y-4 m-4 pb-1 max-h-[90%] overflow-y-scroll rounded-md"
+      >
+        @for (n of newsList$ | async; track n.id) {
+          <app-news-card [news]="n" [fullSize]="true" />
+        } @empty {
+          Aucune actualité !
+        }
+      </ul>
+    </div>
+    <div
+      class="h-full w-full bg-red-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-70 border border-gray-100 shadow-xl"
+    >
+      <div class="text-center">
+        <span class="text-red-800 text-4xl font-semibold rounded ms-4"
+          >Actualités de la classe</span
+        >
+      </div>
+
+      <ul
+        class="flex flex-col space-y-4 m-4 pb-1 max-h-[90%] overflow-y-scroll rounded-md"
+      >
+        @for (n of classNews; track n.id) {
+          <app-news-card [news]="n" [fullSize]="true" />
+        } @empty {
+          Aucune actualité pour la classe de votre enfant !
+        }
+      </ul>
+    </div>
+  </div>
+}

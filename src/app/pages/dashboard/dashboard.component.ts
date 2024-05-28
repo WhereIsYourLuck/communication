@@ -4,6 +4,8 @@ import { Router, RouterLink } from '@angular/router';
 import { Discussion } from '@core/models';
 import { EventService } from '@core/services/event.service';
 import { ConversationListContainerComponent } from '@shared/conversation/components/conversation-list-container/conversation-list-container.component';
+import { NewsWidgetContainerComponent } from './components/widgets/news/news-widget-container/news-widget-container.component';
+import { NewsService } from '@core/services/news.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,9 +13,10 @@ import { ConversationListContainerComponent } from '@shared/conversation/compone
   imports: [
     CalendarWidgetContainerComponent,
     ConversationListContainerComponent,
+    NewsWidgetContainerComponent,
     RouterLink,
   ],
-  providers: [EventService],
+  providers: [EventService, NewsService],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
