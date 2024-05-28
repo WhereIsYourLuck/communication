@@ -1,8 +1,11 @@
+import Message from './message.model';
+
 interface Discussion {
   id: number;
-  username: string;
-  lastMessage: string;
-  messageDate: string;
+  user1: number;
+  user2: number;
+  lastMessage: Message;
   messagesNotSeen: number;
 }
+
 export default Discussion;
