@@ -61,6 +61,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 30203
+          },
           "configurations": {
             "production": {
               "buildTarget": "communication:build:production"

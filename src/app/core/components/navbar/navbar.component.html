@@ -15,13 +15,7 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <span class="ml-3">Nom d'utilisateur</span>
-    <button>
-      <span class="pl-[7rem] underline underline-offset-4">Enfant n°1</span>
-    </button>
-    <button>
-      <span class="pl-[5rem]">Enfant n°2</span>
-    </button>
+    <span class="ml-3">{{ this.username }}</span>
 
     <span class="example-spacer"></span>
 
@@ -36,6 +30,7 @@
     <button
       mat-icon-button
       class="hover:scale-125 duration-300 transition-transform"
+      (click)="lgout()"
     >
       <mat-icon>power_settings_new</mat-icon>
     </button>

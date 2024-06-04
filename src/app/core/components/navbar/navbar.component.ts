@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component
+  //
+ } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { SidebarService } from '../../../services/sidebar.service';
 import { Router } from '@angular/router';
+import { DataServiceService } from 'app/services/data-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,15 +26,22 @@ import { Router } from '@angular/router';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  isSidebarOpened: boolean = false;
 
+  isSidebarOpened: boolean = false;
+  username="";
   constructor(
     public sidebarService: SidebarService,
     private router: Router,
+    private data: DataServiceService
   ) {
     this.sidebarService.sidebarOpen$.subscribe((value) => {
       this.isSidebarOpened = value;
     });
+  }
+
+  lgout() {
+    this.data.clearAllData();
+    window.location.href = 'http://localhost:4200/parent';
   }
 
   toggleSidebar(): void {
